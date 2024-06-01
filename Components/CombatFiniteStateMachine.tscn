@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cr2mpd0jikqv0"]
-
-[ext_resource type="Script" path="res://Components/CombatFiniteStateMachine.cs" id="1_rscli"]
-
-[node name="CombatFiniteStateMachine" type="Node"]
-script = ExtResource("1_rscli")

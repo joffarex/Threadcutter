@@ -4,7 +4,7 @@ using Threadcutter.Scripts;
 
 namespace Threadcutter.Components;
 
-public partial class MovementFiniteStateMachine : FiniteStateMachine
+public partial class CharacterMovementFiniteStateMachine : FiniteStateMachine
 {
     [Export] public CharacterBody2D CharacterBody { get; set; }
     [Export] public VelocityComponent VelocityComponent { get; set; }

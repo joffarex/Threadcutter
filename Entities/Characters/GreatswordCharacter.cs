@@ -6,16 +6,16 @@ namespace Threadcutter.Entities.Characters;
 
 public partial class GreatswordCharacter : CharacterBody2D
 {
-    public MovementFiniteStateMachine MovementFiniteStateMachine { get; set; }
-    public CombatFiniteStateMachine CombatFiniteStateMachine { get; set; }
+    public CharacterMovementFiniteStateMachine CharacterMovementFiniteStateMachine { get; set; }
+    public CharacterCombatFiniteStateMachine CharacterCombatFiniteStateMachine { get; set; }
 
     public AnimationPlayer AnimationPlayer { get; set; }
     [Export] public CharacterData CharacterData { get; set; }
     
     public override void _Ready()
     {
-        MovementFiniteStateMachine = GetNode<Components.MovementFiniteStateMachine>("MovementFiniteStateMachine");
-        CombatFiniteStateMachine = GetNode<Components.CombatFiniteStateMachine>("CombatFiniteStateMachine");
+        CharacterMovementFiniteStateMachine = GetNode<Components.CharacterMovementFiniteStateMachine>("CharacterMovementFiniteStateMachine");
+        CharacterCombatFiniteStateMachine = GetNode<Components.CharacterCombatFiniteStateMachine>("CharacterCombatFiniteStateMachine");
         AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
@@ -25,8 +25,8 @@ public partial class GreatswordCharacter : CharacterBody2D
 
         ResolveDirection(direction);
         
-        MovementFiniteStateMachine.ProcessCurrentState(direction, delta);
-        CombatFiniteStateMachine.ProcessCurrentState(direction, delta);
+        CharacterMovementFiniteStateMachine.ProcessCurrentState(direction, delta);
+        CharacterCombatFiniteStateMachine.ProcessCurrentState(direction, delta);
     }
 
     private void ResolveDirection(float inputDirection)

@@ -9,21 +9,21 @@ public partial class CharacterAnimator : Node
     
     [Export] public CharacterBody2D CharacterBody { get; set; }
     [Export] public CharacterData CharacterData { get; set; }
-    [Export] public MovementFiniteStateMachine MovementFiniteStateMachine { get; set; }
-    [Export] public CombatFiniteStateMachine CombatFiniteStateMachine { get; set; }
+    [Export] public CharacterMovementFiniteStateMachine CharacterMovementFiniteStateMachine { get; set; }
+    [Export] public CharacterCombatFiniteStateMachine CharacterCombatFiniteStateMachine { get; set; }
 
     [Export] public AnimationPlayer AnimationPlayer { get; set; }
 
     
     public override void _Process(double delta)
     {
-        if (CombatFiniteStateMachine.CurrentState != "no_attack")
+        if (CharacterCombatFiniteStateMachine.CurrentState != "no_attack")
         {
-            AnimationPlayer.Play(CombatFiniteStateMachine.CurrentState);
+            AnimationPlayer.Play(CharacterCombatFiniteStateMachine.CurrentState);
         }
         else
         {
-            switch (MovementFiniteStateMachine.CurrentState)
+            switch (CharacterMovementFiniteStateMachine.CurrentState)
             {
                 case "idle":
                     if (CharacterBody.IsOnFloor())
@@ -61,7 +61,7 @@ public partial class CharacterAnimator : Node
 
                     break;
                 default:
-                    GD.Print($"[WARN] Incorrect ANIMATION state {MovementFiniteStateMachine.CurrentState}");
+                    GD.Print($"[WARN] Incorrect ANIMATION state {CharacterMovementFiniteStateMachine.CurrentState}");
                     break;
             }
         }

@@ -4,11 +4,11 @@ using Threadcutter.Scripts;
 
 namespace Threadcutter.Components;
 
-public partial class CombatFiniteStateMachine : FiniteStateMachine
+public partial class CharacterCombatFiniteStateMachine : FiniteStateMachine
 {
     [Export] public CharacterBody2D CharacterBody { get; set; }
     [Export] public CharacterData CharacterData { get; set; }
-    [Export] public MovementFiniteStateMachine MovementFiniteStateMachine { get; set; }
+    [Export] public CharacterMovementFiniteStateMachine CharacterMovementFiniteStateMachine { get; set; }
 
     private Timer _mainAttackDurationTimer;
     private Timer _secondaryAttackDurationTimer;
@@ -31,9 +31,9 @@ public partial class CombatFiniteStateMachine : FiniteStateMachine
     }
 
     private bool CanSecondaryAttack() =>
-        MovementFiniteStateMachine.CurrentState != "jump" &&
-        MovementFiniteStateMachine.CurrentState != "fall" &&
-        MovementFiniteStateMachine.CurrentState != "coyote_jump";
+        CharacterMovementFiniteStateMachine.CurrentState != "jump" &&
+        CharacterMovementFiniteStateMachine.CurrentState != "fall" &&
+        CharacterMovementFiniteStateMachine.CurrentState != "coyote_jump";
     public override void EnterState(string state)
     {
         switch (state)
