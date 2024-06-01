@@ -8,8 +8,8 @@ public partial class VelocityComponent : Node
     public Vector2 Velocity { get; set; }
 
     [Export] public bool IsGravityDisabled { get; set; }
-    [Export] public bool IsSuppressed { get; set; }
-    
+    [Export] public CharacterData CharacterData { get; set; }
+
     [Export] public float Speed { get; set; }
     
     [Export] public JumpData JumpData { get; set; }
@@ -41,7 +41,7 @@ public partial class VelocityComponent : Node
 
     public void MoveInDirection(float direction)
     {
-        if (direction == 0.0 || IsSuppressed)
+        if (direction == 0.0 || CharacterData.IsSuppressed)
         {
             Velocity = Velocity with { X = 0.0f };
         }

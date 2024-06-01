@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b1cgul8m3jqyt"]
+[gd_scene load_steps=22 format=3 uid="uid://b1cgul8m3jqyt"]
 
 [ext_resource type="Script" path="res://Entities/Characters/GreatswordCharacter.cs" id="1_00ypx"]
 [ext_resource type="Texture2D" uid="uid://bxmsj03dpb8vg" path="res://Assets/Sci-fi Samurai with Sword 124x49.png" id="1_7v4d2"]
@@ -6,9 +6,10 @@
 [ext_resource type="Resource" uid="uid://bkmosmd6fdoxo" path="res://Entities/Characters/GreatswordCharacterData.tres" id="2_rn8fg"]
 [ext_resource type="Resource" uid="uid://dnsj23us3yhrq" path="res://Entities/Characters/JumpData.tres" id="4_npueq"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_5hx54"]
+[ext_resource type="PackedScene" uid="uid://cr2mpd0jikqv0" path="res://Components/CombatFiniteStateMachine.tscn" id="7_7ishd"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_vf3lk"]
 [ext_resource type="PackedScene" uid="uid://dqvf3jggdtjuc" path="res://Components/MovementFiniteStateMachine.tscn" id="7_x3y8u"]
-[ext_resource type="PackedScene" uid="uid://c1gq4mxlpat6p" path="res://Components/CharacterMovementAnimator.tscn" id="9_6aldt"]
+[ext_resource type="PackedScene" uid="uid://c1gq4mxlpat6p" path="res://Components/CharacterAnimator.tscn" id="9_xg6va"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73j7v"]
 radius = 8.0
@@ -117,6 +118,40 @@ tracks/0/keys = {
 "values": [48, 49, 50, 51]
 }
 
+[sub_resource type="Animation" id="Animation_wfqfi"]
+resource_name = "main_attack"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [144, 145, 146, 147, 148, 149, 150, 151, 152, 153]
+}
+
+[sub_resource type="Animation" id="Animation_i0cu8"]
+resource_name = "secondary_attack"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p384a"]
 _data = {
 "RESET": SubResource("Animation_cwbni"),
@@ -124,7 +159,9 @@ _data = {
 "idle": SubResource("Animation_in7nn"),
 "jump": SubResource("Animation_7btu5"),
 "land": SubResource("Animation_r8r7t"),
-"move": SubResource("Animation_agfrl")
+"main_attack": SubResource("Animation_wfqfi"),
+"move": SubResource("Animation_agfrl"),
+"secondary_attack": SubResource("Animation_i0cu8")
 }
 
 [node name="GreatswordCharacter" type="CharacterBody2D"]
@@ -142,6 +179,7 @@ position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_73j7v")
 
 [node name="VelocityComponent" parent="." node_paths=PackedStringArray("CharacterBody") instance=ExtResource("2_2cdtv")]
+CharacterData = ExtResource("2_rn8fg")
 Speed = 550.0
 JumpData = ExtResource("4_npueq")
 CharacterBody = NodePath("..")
@@ -151,6 +189,12 @@ CharacterBody = NodePath("..")
 VelocityComponent = NodePath("../VelocityComponent")
 JumpData = ExtResource("4_npueq")
 InitialState = "idle"
+
+[node name="CombatFiniteStateMachine" parent="." node_paths=PackedStringArray("CharacterBody", "MovementFiniteStateMachine") instance=ExtResource("7_7ishd")]
+CharacterBody = NodePath("..")
+CharacterData = ExtResource("2_rn8fg")
+MovementFiniteStateMachine = NodePath("../MovementFiniteStateMachine")
+InitialState = "no_attack"
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 script = ExtResource("6_5hx54")
@@ -164,8 +208,9 @@ libraries = {
 "": SubResource("AnimationLibrary_p384a")
 }
 
-[node name="CharacterMovementAnimator" parent="." node_paths=PackedStringArray("CharacterBody", "MovementFiniteStateMachine", "AnimationPlayer") instance=ExtResource("9_6aldt")]
+[node name="CharacterAnimator" parent="." node_paths=PackedStringArray("CharacterBody", "MovementFiniteStateMachine", "CombatFiniteStateMachine", "AnimationPlayer") instance=ExtResource("9_xg6va")]
 CharacterBody = NodePath("..")
 CharacterData = ExtResource("2_rn8fg")
 MovementFiniteStateMachine = NodePath("../MovementFiniteStateMachine")
+CombatFiniteStateMachine = NodePath("../CombatFiniteStateMachine")
 AnimationPlayer = NodePath("../AnimationPlayer")

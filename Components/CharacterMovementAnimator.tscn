@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1gq4mxlpat6p"]
-
-[ext_resource type="Script" path="res://Components/CharacterMovementAnimator.cs" id="1_bncd5"]
-
-[node name="CharacterMovementAnimator" type="Node"]
-script = ExtResource("1_bncd5")
