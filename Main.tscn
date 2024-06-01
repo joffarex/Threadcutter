@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3d4qnhnqnn81"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_dpim7"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_bbhtx"]
+[ext_resource type="PackedScene" uid="uid://b1cgul8m3jqyt" path="res://Entities/Characters/GreatswordCharacter.tscn" id="2_iyu53"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggtun"]
+size = Vector2(210, 20)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_dpim7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(314, 299)
+zoom = Vector2(1.5, 1.5)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("2_bbhtx")
+
+[node name="GreatswordCharacter" parent="." instance=ExtResource("2_iyu53")]
+position = Vector2(314, 299)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(345, 448)
+shape = SubResource("RectangleShape2D_ggtun")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(151, -95)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(345, 448)
+shape = SubResource("RectangleShape2D_ggtun")

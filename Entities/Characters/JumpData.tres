@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dnsj23us3yhrq"]
+
+[ext_resource type="Script" path="res://DataObjects/JumpData.cs" id="1_vhoxv"]
+
+[resource]
+script = ExtResource("1_vhoxv")
+JumpHeight = 200.0
+JumpTimeToPeak = 0.5
+JumpTimeToDescent = 0.4
