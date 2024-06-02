@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqhe8qpuqaf87"]
+
+[ext_resource type="Script" path="res://Entities/Dropped/Dropped.cs" id="1_51ilx"]
+[ext_resource type="PackedScene" uid="uid://p5beah21jcts" path="res://Entities/Dropped/DroppedUserInterface.tscn" id="2_fug88"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ve0dk"]
+radius = 12.0
+height = 66.0
+
+[node name="Dropped" type="Area2D"]
+collision_mask = 114
+script = ExtResource("1_51ilx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+
+[node name="DroppedUserInterface" parent="." instance=ExtResource("2_fug88")]
+offset_top = -17.0
+offset_bottom = -17.0
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ve0dk")

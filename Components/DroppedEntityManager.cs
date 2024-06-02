@@ -2,6 +2,7 @@
 using Godot;
 using Threadcutter.Entities;
 using Threadcutter.Entities.Characters;
+using Threadcutter.Entities.Dropped;
 
 namespace Threadcutter.Components;
 

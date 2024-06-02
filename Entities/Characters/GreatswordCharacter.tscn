@@ -168,7 +168,7 @@ _data = {
 
 [node name="GreatswordCharacter" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_j8w3q")
 CharacterData = ExtResource("2_rn8fg")
 

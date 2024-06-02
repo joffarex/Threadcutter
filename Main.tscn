@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Main.cs" id="1_dpim7"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_bbhtx"]
 [ext_resource type="PackedScene" uid="uid://b1cgul8m3jqyt" path="res://Entities/Characters/GreatswordCharacter.tscn" id="2_iyu53"]
-[ext_resource type="PackedScene" uid="uid://cqhe8qpuqaf87" path="res://Entities/Dropped.tscn" id="4_t5gl6"]
+[ext_resource type="PackedScene" uid="uid://cqhe8qpuqaf87" path="res://Entities/Dropped/Dropped.tscn" id="4_t5gl6"]
 [ext_resource type="Resource" uid="uid://bcknpngkyn7aa" path="res://Entities/BossAbilities/BossAbilityDroppedItemData.tres" id="5_ij4pg"]
 [ext_resource type="Texture2D" uid="uid://d3rulv880lwuf" path="res://Assets/TestBossAbility.png" id="6_qwmfn"]
 
@@ -35,13 +35,10 @@ position = Vector2(314, 299)
 position = Vector2(404, 418)
 collision_layer = 128
 collision_mask = 16
-DroppedLabel = "Test Boss Ability"
+DroppedItemInteractLabelText = "Pick up"
+DroppedItemTexture = ExtResource("6_qwmfn")
 DroppedItemData = ExtResource("5_ij4pg")
 AutoPickup = false
-
-[node name="TestBossAbility" type="Sprite2D" parent="Containers/DroppedContainer/Dropped"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_qwmfn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/Dropped"]
 shape = SubResource("CircleShape2D_76m2j")
@@ -62,3 +59,5 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(345, 448)
 shape = SubResource("RectangleShape2D_ggtun")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

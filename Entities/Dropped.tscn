@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqhe8qpuqaf87"]
-
-[ext_resource type="Script" path="res://Entities/Dropped.cs" id="1_51ilx"]
-
-[node name="Dropped" type="Area2D"]
-collision_mask = 114
-script = ExtResource("1_51ilx")
