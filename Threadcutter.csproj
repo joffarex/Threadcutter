@@ -6,8 +6,6 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Components\" />
-    <Folder Include="Entities\" />
     <Folder Include="Managers\" />
   </ItemGroup>
 </Project>

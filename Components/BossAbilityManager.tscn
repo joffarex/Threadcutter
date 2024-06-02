@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chmd2eetu64ab"]
+
+[ext_resource type="Script" path="res://Components/BossAbilityManager.cs" id="1_siuoa"]
+
+[node name="BossAbilityManager" type="Node" groups=["BossAbilityManager"]]
+script = ExtResource("1_siuoa")

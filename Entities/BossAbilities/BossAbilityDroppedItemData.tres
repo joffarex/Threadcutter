@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bcknpngkyn7aa"]
+
+[ext_resource type="PackedScene" uid="uid://ri0gyuhc1o5j" path="res://Entities/BossAbilities/TestBossAbility.tscn" id="1_okb7v"]
+[ext_resource type="Script" path="res://Entities/BossAbilities/BossAbilityDroppedItemData.cs" id="2_jhelw"]
+
+[resource]
+script = ExtResource("2_jhelw")
+BossAbilityScene = ExtResource("1_okb7v")
+Name = "Test Boss Ability"
+InteractLabelText = "Test Boss Ability"

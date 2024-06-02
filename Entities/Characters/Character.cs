@@ -4,12 +4,15 @@ using Threadcutter.DataObjects;
 
 namespace Threadcutter.Entities.Characters;
 
-public partial class GreatswordCharacter : CharacterBody2D
+public partial class Character : CharacterBody2D
 {
     public CharacterMovementFiniteStateMachine CharacterMovementFiniteStateMachine { get; set; }
     public CharacterCombatFiniteStateMachine CharacterCombatFiniteStateMachine { get; set; }
 
     public AnimationPlayer AnimationPlayer { get; set; }
+    public BossAbilityManager BossAbilityManager { get; set; }
+    
+    
     [Export] public CharacterData CharacterData { get; set; }
     
     public override void _Ready()
@@ -17,6 +20,7 @@ public partial class GreatswordCharacter : CharacterBody2D
         CharacterMovementFiniteStateMachine = GetNode<Components.CharacterMovementFiniteStateMachine>("CharacterMovementFiniteStateMachine");
         CharacterCombatFiniteStateMachine = GetNode<Components.CharacterCombatFiniteStateMachine>("CharacterCombatFiniteStateMachine");
         AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        BossAbilityManager = GetNode<BossAbilityManager>("BossAbilityManager");
     }
 
     public override void _PhysicsProcess(double delta)

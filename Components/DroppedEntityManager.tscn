@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwjdd3ov2lyq8"]
+
+[ext_resource type="Script" path="res://Components/DroppedEntityManager.cs" id="1_qr2p3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_088lb"]
+radius = 25.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtfvt"]
+radius = 38.4708
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_an823"]
+radius = 31.1448
+
+[node name="DroppedEntityManager" type="Node2D"]
+script = ExtResource("1_qr2p3")
+
+[node name="DroppedAbilityPickup" type="Area2D" parent="."]
+modulate = Color(0, 0, 0, 0.0901961)
+collision_layer = 16
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DroppedAbilityPickup"]
+shape = SubResource("CircleShape2D_088lb")
+
+[node name="DroppedGemPickup" type="Area2D" parent="."]
+modulate = Color(0, 0, 0, 0.270588)
+collision_layer = 32
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DroppedGemPickup"]
+shape = SubResource("CircleShape2D_qtfvt")
+
+[node name="DroppedXpPickup" type="Area2D" parent="."]
+modulate = Color(0, 0, 0, 0.117647)
+collision_layer = 64
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DroppedXpPickup"]
+shape = SubResource("CircleShape2D_an823")

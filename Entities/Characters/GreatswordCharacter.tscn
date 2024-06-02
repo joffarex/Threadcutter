@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://b1cgul8m3jqyt"]
+[gd_scene load_steps=24 format=3 uid="uid://b1cgul8m3jqyt"]
 
-[ext_resource type="Script" path="res://Entities/Characters/GreatswordCharacter.cs" id="1_00ypx"]
 [ext_resource type="Texture2D" uid="uid://bxmsj03dpb8vg" path="res://Assets/Sci-fi Samurai with Sword 124x49.png" id="1_7v4d2"]
+[ext_resource type="Script" path="res://Entities/Characters/Character.cs" id="1_j8w3q"]
 [ext_resource type="PackedScene" uid="uid://cgavna2o5yj6g" path="res://Components/VelocityComponent.tscn" id="2_2cdtv"]
 [ext_resource type="Resource" uid="uid://bkmosmd6fdoxo" path="res://Entities/Characters/GreatswordCharacterData.tres" id="2_rn8fg"]
 [ext_resource type="Resource" uid="uid://dnsj23us3yhrq" path="res://Entities/Characters/JumpData.tres" id="4_npueq"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dqvf3jggdtjuc" path="res://Components/CharacterMovementFiniteStateMachine.tscn" id="6_52dst"]
 [ext_resource type="PackedScene" uid="uid://cr2mpd0jikqv0" path="res://Components/CharacterCombatFiniteStateMachine.tscn" id="7_n35qs"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_vf3lk"]
+[ext_resource type="PackedScene" uid="uid://chmd2eetu64ab" path="res://Components/BossAbilityManager.tscn" id="8_bmni6"]
+[ext_resource type="PackedScene" uid="uid://bwjdd3ov2lyq8" path="res://Components/DroppedEntityManager.tscn" id="9_rvuk0"]
 [ext_resource type="PackedScene" uid="uid://c1gq4mxlpat6p" path="res://Components/CharacterAnimator.tscn" id="9_xg6va"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_73j7v"]
@@ -165,7 +167,9 @@ _data = {
 }
 
 [node name="GreatswordCharacter" type="CharacterBody2D"]
-script = ExtResource("1_00ypx")
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_j8w3q")
 CharacterData = ExtResource("2_rn8fg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -195,6 +199,12 @@ CharacterBody = NodePath("..")
 CharacterData = ExtResource("2_rn8fg")
 CharacterMovementFiniteStateMachine = NodePath("../CharacterMovementFiniteStateMachine")
 InitialState = "no_attack"
+
+[node name="BossAbilityManager" parent="." node_paths=PackedStringArray("CharacterBody") instance=ExtResource("8_bmni6")]
+CharacterBody = NodePath("..")
+
+[node name="DroppedEntityManager" parent="." node_paths=PackedStringArray("Character") instance=ExtResource("9_rvuk0")]
+Character = NodePath("..")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 script = ExtResource("6_5hx54")

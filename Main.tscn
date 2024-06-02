@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3d4qnhnqnn81"]
+[gd_scene load_steps=9 format=3 uid="uid://b3d4qnhnqnn81"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_dpim7"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_bbhtx"]
 [ext_resource type="PackedScene" uid="uid://b1cgul8m3jqyt" path="res://Entities/Characters/GreatswordCharacter.tscn" id="2_iyu53"]
+[ext_resource type="PackedScene" uid="uid://cqhe8qpuqaf87" path="res://Entities/Dropped.tscn" id="4_t5gl6"]
+[ext_resource type="Resource" uid="uid://bcknpngkyn7aa" path="res://Entities/BossAbilities/BossAbilityDroppedItemData.tres" id="5_ij4pg"]
+[ext_resource type="Texture2D" uid="uid://d3rulv880lwuf" path="res://Assets/TestBossAbility.png" id="6_qwmfn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_76m2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggtun"]
 size = Vector2(210, 20)
@@ -20,7 +25,30 @@ script = ExtResource("2_bbhtx")
 [node name="GreatswordCharacter" parent="." instance=ExtResource("2_iyu53")]
 position = Vector2(314, 299)
 
+[node name="Containers" type="Node2D" parent="."]
+
+[node name="AbilityContainer" type="Node2D" parent="Containers" groups=["AbilityContainer"]]
+
+[node name="DroppedContainer" type="Node2D" parent="Containers" groups=["DroppedContainer"]]
+
+[node name="Dropped" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(404, 418)
+collision_layer = 128
+collision_mask = 16
+DroppedLabel = "Test Boss Ability"
+DroppedItemData = ExtResource("5_ij4pg")
+AutoPickup = false
+
+[node name="TestBossAbility" type="Sprite2D" parent="Containers/DroppedContainer/Dropped"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_qwmfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/Dropped"]
+shape = SubResource("CircleShape2D_76m2j")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(345, 448)
@@ -28,6 +56,8 @@ shape = SubResource("RectangleShape2D_ggtun")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(151, -95)
+collision_layer = 4
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(345, 448)
