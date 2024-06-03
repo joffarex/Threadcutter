@@ -11,6 +11,7 @@ public partial class Character : CharacterBody2D
 
     public AnimationPlayer AnimationPlayer { get; set; }
     public BossAbilityManager BossAbilityManager { get; set; }
+    public XpManager XpManager { get; set; }
     
     
     [Export] public CharacterData CharacterData { get; set; }
@@ -21,6 +22,7 @@ public partial class Character : CharacterBody2D
         CharacterCombatFiniteStateMachine = GetNode<Components.CharacterCombatFiniteStateMachine>("CharacterCombatFiniteStateMachine");
         AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         BossAbilityManager = GetNode<BossAbilityManager>("BossAbilityManager");
+        XpManager = GetNode<XpManager>("XpManager");
     }
 
     public override void _PhysicsProcess(double delta)

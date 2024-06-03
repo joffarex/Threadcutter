@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3d4qnhnqnn81"]
+[gd_scene load_steps=14 format=3 uid="uid://b3d4qnhnqnn81"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_dpim7"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_bbhtx"]
@@ -6,8 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://cqhe8qpuqaf87" path="res://Entities/Dropped/Dropped.tscn" id="4_t5gl6"]
 [ext_resource type="Resource" uid="uid://bcknpngkyn7aa" path="res://Entities/BossAbilities/BossAbilityDroppedItemData.tres" id="5_ij4pg"]
 [ext_resource type="Texture2D" uid="uid://d3rulv880lwuf" path="res://Assets/TestBossAbility.png" id="6_qwmfn"]
+[ext_resource type="Texture2D" uid="uid://78o1tr116ua0" path="res://Assets/StandardXp.png" id="7_4wxi1"]
+[ext_resource type="Resource" uid="uid://58u2mn3vrc3i" path="res://Entities/Xp/StandardXpDroppedItemData.tres" id="8_5ixnh"]
+[ext_resource type="Texture2D" uid="uid://cd5rqqmjpk884" path="res://Assets/ExtraXp.png" id="9_m0egi"]
+[ext_resource type="Resource" uid="uid://bbrv05t6btg4j" path="res://Entities/Xp/ExtraXpDroppedItemData.tres" id="10_m64i5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_76m2j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b0nud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggtun"]
 size = Vector2(210, 20)
@@ -31,7 +37,7 @@ position = Vector2(314, 299)
 
 [node name="DroppedContainer" type="Node2D" parent="Containers" groups=["DroppedContainer"]]
 
-[node name="Dropped" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+[node name="DroppedTestBossAbility" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
 position = Vector2(404, 418)
 collision_layer = 128
 collision_mask = 16
@@ -40,8 +46,30 @@ DroppedItemTexture = ExtResource("6_qwmfn")
 DroppedItemData = ExtResource("5_ij4pg")
 AutoPickup = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/Dropped"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedTestBossAbility"]
 shape = SubResource("CircleShape2D_76m2j")
+
+[node name="DroppedStandardXp" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(473, 324)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("7_4wxi1")
+DroppedItemData = ExtResource("8_5ixnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedStandardXp"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(547, 323)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp"]
+shape = SubResource("CircleShape2D_b0nud")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4

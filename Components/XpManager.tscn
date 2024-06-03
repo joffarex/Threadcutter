@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce55vodb15j6l"]
+
+[ext_resource type="Script" path="res://Components/XpManager.cs" id="1_66k36"]
+
+[node name="XpManager" type="Node"]
+script = ExtResource("1_66k36")

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bbrv05t6btg4j"]
+
+[ext_resource type="Script" path="res://Entities/Xp/XpDroppedItemData.cs" id="1_73h1r"]
+
+[resource]
+script = ExtResource("1_73h1r")
+XpValue = 100
+Name = "Extra XP"
