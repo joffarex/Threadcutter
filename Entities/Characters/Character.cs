@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Godot;
 using Threadcutter.Components;
 using Threadcutter.DataObjects;
@@ -33,6 +34,8 @@ public partial class Character : CharacterBody2D
         
         CharacterMovementFiniteStateMachine.ProcessCurrentState(direction, delta);
         CharacterCombatFiniteStateMachine.ProcessCurrentState(direction, delta);
+
+        Debug();
     }
 
     private void ResolveDirection(float inputDirection)
@@ -41,6 +44,13 @@ public partial class Character : CharacterBody2D
         {
             Transform = Transform with { X = Transform.X with { X = inputDirection } };
             CharacterData.CurrentDirection = inputDirection;
+        }
+    }
+
+    private void Debug()
+    {
+        if (Input.IsActionJustPressed("debug_btn"))
+        {
         }
     }
 }
