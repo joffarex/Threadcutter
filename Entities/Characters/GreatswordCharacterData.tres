@@ -6,5 +6,5 @@
 script = ExtResource("1_u437j")
 CurrentDirection = 1.0
 IsSuppressed = false
-EvolvePerLevelAmount = 3
+_evolvePerLevelAmount = 3
 _ultimateAbilityUnlockLevel = 7

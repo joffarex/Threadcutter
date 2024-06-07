@@ -13,6 +13,7 @@ public partial class Character : CharacterBody2D
     public AnimationPlayer AnimationPlayer { get; set; }
     public BossAbilityManager BossAbilityManager { get; set; }
     public XpManager XpManager { get; set; }
+    public AbilityEvolver AbilityEvolver { get; set; }
     
     
     [Export] public CharacterData CharacterData { get; set; }
@@ -24,6 +25,16 @@ public partial class Character : CharacterBody2D
         AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         BossAbilityManager = GetNode<BossAbilityManager>("BossAbilityManager");
         XpManager = GetNode<XpManager>("XpManager");
+        AbilityEvolver = GetNode<AbilityEvolver>("AbilityEvolver");
+
+        XpManager.GainedLevel += level =>
+        {
+            if (level % CharacterData.EvolvePerLevelAmount == 0)
+            {
+                var evolves = AbilityEvolver.SuggestAbilityEvolves();
+                GD.Print($"{evolves.Item1} | {evolves.Item2}");
+            }
+        };
     }
 
     public override void _PhysicsProcess(double delta)
@@ -51,6 +62,11 @@ public partial class Character : CharacterBody2D
     {
         if (Input.IsActionJustPressed("debug_btn"))
         {
+            if (XpManager.CurrentLevel % CharacterData.EvolvePerLevelAmount == 0)
+            {
+                var evolves = AbilityEvolver.SuggestAbilityEvolves();
+                GD.Print($"{evolves.Item1} | ${evolves.Item2}");
+            }
         }
     }
 }

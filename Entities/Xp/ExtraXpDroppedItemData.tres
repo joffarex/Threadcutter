@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_73h1r")
-XpValue = 100
+XpValue = 500
 Name = "Extra XP"

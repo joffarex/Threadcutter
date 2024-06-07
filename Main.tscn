@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3d4qnhnqnn81"]
+[gd_scene load_steps=15 format=3 uid="uid://b3d4qnhnqnn81"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_dpim7"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_bbhtx"]
@@ -16,7 +16,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_b0nud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ggtun"]
-size = Vector2(210, 20)
+size = Vector2(274, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b66q5"]
+size = Vector2(659, 20)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dpim7")
@@ -71,6 +74,182 @@ DroppedItemData = ExtResource("10_m64i5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp"]
 shape = SubResource("CircleShape2D_b0nud")
 
+[node name="DroppedExtraXp2" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(623, 325)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp2"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp3" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(700, 324)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp3"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp4" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(773, 323)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp4"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp5" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(851, 322)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp5"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp6" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(924, 324)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp6"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp7" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(996, 327)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp7"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp8" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(978, 269)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp8"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp9" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(904, 256)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp9"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp10" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(834, 268)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp10"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp11" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(759, 247)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp11"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp13" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(759, 247)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp13"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp14" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(759, 247)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp14"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp15" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(759, 247)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp15"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp16" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(759, 247)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp16"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp17" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(759, 247)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp17"]
+shape = SubResource("CircleShape2D_b0nud")
+
+[node name="DroppedExtraXp12" parent="Containers/DroppedContainer" instance=ExtResource("4_t5gl6")]
+position = Vector2(695, 271)
+collision_layer = 512
+collision_mask = 64
+DroppedItemInteractLabelText = "Gain Standard XP"
+DroppedItemTexture = ExtResource("9_m0egi")
+DroppedItemData = ExtResource("10_m64i5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Containers/DroppedContainer/DroppedExtraXp12"]
+shape = SubResource("CircleShape2D_b0nud")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 8
@@ -85,7 +264,7 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(345, 448)
-shape = SubResource("RectangleShape2D_ggtun")
+position = Vector2(569.5, 448)
+shape = SubResource("RectangleShape2D_b66q5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

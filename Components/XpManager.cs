@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Godot.Collections;
 using Godot;
 
 namespace Threadcutter.Components;
@@ -21,7 +21,7 @@ public partial class XpManager : Node
     private readonly Dictionary<int, int> _xpRequiredToLevel = new()
     {
         { 2, 100 }, { 3, 300 }, { 4, 550 }, { 5, 900 }, { 6, 1500 }, { 7, 2200 }, { 8, 2900 },
-        { 9, 3700 }, { 10, 4500 }
+        { 9, 3700 }, { 10, 4500 }, { 11, 6000 }, { 12, 8000 }, { 13, 10500 }
     };
 
     public void LevelUp()
@@ -36,10 +36,12 @@ public partial class XpManager : Node
     {
         CurrentXp += amount;
 
-        if (CurrentLevel != 10)
+        if (CurrentLevel != 13)
         {
-            int levelUpThreshold = _xpRequiredToLevel[CurrentLevel + 1];
-            if (CurrentXp >= levelUpThreshold)
+            // We do while loop as received XP amount can be more than whatever actual full level requires
+            // you to level up
+
+            while (CurrentXp >= _xpRequiredToLevel[CurrentLevel + 1])
             {
                 LevelUp();
             }

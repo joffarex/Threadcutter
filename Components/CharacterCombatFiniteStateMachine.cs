@@ -8,6 +8,7 @@ public partial class CharacterCombatFiniteStateMachine : FiniteStateMachine
 {
     [Export] public CharacterBody2D CharacterBody { get; set; }
     [Export] public CharacterData CharacterData { get; set; }
+    [Export] public AbilityEvolver AbilityEvolver { get; set; }
     [Export] public CharacterMovementFiniteStateMachine CharacterMovementFiniteStateMachine { get; set; }
 
     private Timer _mainAttackDurationTimer;
@@ -28,6 +29,12 @@ public partial class CharacterCombatFiniteStateMachine : FiniteStateMachine
         _secondaryAttackDurationTimer.WaitTime = 0.7f; // Taken from `AnimationPlayer`
         _secondaryAttackDurationTimer.OneShot = true;
         AddChild(_secondaryAttackDurationTimer);
+
+        AbilityEvolver.AbilityEvolved += abilityEvolvedData =>
+        {
+            GD.Print($"Successfully evolved: {abilityEvolvedData.Ability} | {abilityEvolvedData.EvolveLevel}");
+            // TODO: get new animation from animation player and update wait time on attack durations
+        };
     }
 
     private bool CanSecondaryAttack() =>
@@ -41,13 +48,19 @@ public partial class CharacterCombatFiniteStateMachine : FiniteStateMachine
             case "no_attack":
                 return;
             case "main_attack":
+            case "main_attack_one":
+            case "main_attack_two":
                 _mainAttackDurationTimer.Start();
                 return;
             case "secondary_attack":
+            case "secondary_attack_one":
+            case "secondary_attack_two":
                 _secondaryAttackDurationTimer.Start();
                 CharacterData.IsSuppressed = true;
                 return;
             case "ultimate_ability":
+            case "ultimate_ability_one":
+            case "ultimate_ability_two":
                 return;
             default:
                 GD.Print($"[WARN] Incorrect ENTER state: {state}");
@@ -61,10 +74,17 @@ public partial class CharacterCombatFiniteStateMachine : FiniteStateMachine
         {
             case "no_attack":
             case "main_attack":
+            case "main_attack_one":
+            case "main_attack_two":
+                return;
             case "secondary_attack":
+            case "secondary_attack_one":
+            case "secondary_attack_two":
                 CharacterData.IsSuppressed = false;
                 return;
             case "ultimate_ability":
+            case "ultimate_ability_one":
+            case "ultimate_ability_two":
                 return;
             default:
                 GD.Print($"[WARN] Incorrect EXIT state: {state}");
@@ -81,53 +101,69 @@ public partial class CharacterCombatFiniteStateMachine : FiniteStateMachine
             case "no_attack":
                 if (Input.IsActionJustPressed("main_attack"))
                 {
-                    ChangeState("main_attack");
+                    ChangeState(AbilityEvolver.ConstructEvolvedAbilityAlias("main_attack"));
                 } else if (Input.IsActionJustPressed("secondary_attack") && CanSecondaryAttack())
                 {
-                    ChangeState("secondary_attack");
+                    ChangeState(AbilityEvolver.ConstructEvolvedAbilityAlias("secondary_attack"));
                 } else if (Input.IsActionJustPressed("ultimate_ability"))
                 {
-                    ChangeState("ultimate_ability");
+                    ChangeState(AbilityEvolver.ConstructEvolvedAbilityAlias("ultimate_ability"));
                 }
 
                 return;
             case "main_attack":
-                if (Mathf.IsZeroApprox(_mainAttackDurationTimer.TimeLeft))
-                {
-                    ChangeState("no_attack");
-                } else if (_mainAttackDurationTimer.TimeLeft < AttackBufferTime)
-                {
-                    if (Input.IsActionJustPressed("secondary_attack") && CanSecondaryAttack())
-                    {
-                        ChangeState("secondary_attack");
-                    } else if (Input.IsActionJustPressed("ultimate_ability"))
-                    {
-                        ChangeState("ultimate_ability");
-                    }
-                }
+            case "main_attack_one":
+            case "main_attack_two":
+                MainAttack();
 
                 return;
             case "secondary_attack":
-                if (Mathf.IsZeroApprox(_secondaryAttackDurationTimer.TimeLeft))
-                {
-                    ChangeState("no_attack");
-                } else if (_secondaryAttackDurationTimer.TimeLeft < AttackBufferTime)
-                {
-                    if (Input.IsActionJustPressed("main_attack"))
-                    {
-                        ChangeState("main_attack");
-                    } else if (Input.IsActionJustPressed("ultimate_ability"))
-                    {
-                        ChangeState("ultimate_ability");
-                    }
-                }
+            case "secondary_attack_one":
+            case "secondary_attack_two":
+                SecondaryAttack();
                 
                 return;
             case "ultimate_ability":
+            case "ultimate_ability_one":
+            case "ultimate_ability_two":
                 return;
             default:
                 GD.Print($"[WARN] Incorrect PROCESS state: {state}");
                 return;
+        }
+    }
+
+    private void MainAttack()
+    {
+        if (Mathf.IsZeroApprox(_mainAttackDurationTimer.TimeLeft))
+        {
+            ChangeState("no_attack");
+        } else if (_mainAttackDurationTimer.TimeLeft < AttackBufferTime)
+        {
+            if (Input.IsActionJustPressed("secondary_attack") && CanSecondaryAttack())
+            {
+                ChangeState(AbilityEvolver.ConstructEvolvedAbilityAlias("secondary_attack"));
+            } else if (Input.IsActionJustPressed("ultimate_ability"))
+            {
+                ChangeState(AbilityEvolver.ConstructEvolvedAbilityAlias("ultimate_ability"));
+            }
+        }
+    }
+
+    private void SecondaryAttack()
+    {
+        if (Mathf.IsZeroApprox(_secondaryAttackDurationTimer.TimeLeft))
+        {
+            ChangeState("no_attack");
+        } else if (_secondaryAttackDurationTimer.TimeLeft < AttackBufferTime)
+        {
+            if (Input.IsActionJustPressed("main_attack"))
+            {
+                ChangeState(AbilityEvolver.ConstructEvolvedAbilityAlias("main_attack"));
+            } else if (Input.IsActionJustPressed("ultimate_ability"))
+            {
+                ChangeState(AbilityEvolver.ConstructEvolvedAbilityAlias("ultimate_ability"));
+            }
         }
     }
 }
